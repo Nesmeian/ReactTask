@@ -1,7 +1,7 @@
 import React from 'react'
 
-const main = (): JSX.Element => {
+const Main = (): JSX.Element => {
     return <div>Main</div>
 }
 
-export default main
+export default Main
