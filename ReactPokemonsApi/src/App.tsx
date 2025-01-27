@@ -16,8 +16,8 @@ function App(): JSX.Element {
     return (
         <ThemeProvider theme={theme}>
             <Box bgcolor={'background.default'} color={'text.primary'}>
-                <Header></Header>
-                <Main></Main>
+                <Header />
+                <Main />
             </Box>
         </ThemeProvider>
     )
