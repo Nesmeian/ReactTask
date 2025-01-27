@@ -92,9 +92,10 @@ const Main = (): JSX.Element => {
             {state.map((elem) => (
                 <ImageListItem key={elem.name}>
                     <img
-                        srcSet={`${elem.sprites.other.dream_world.front_default}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                        src={`${elem.sprites.other.dream_world.front_default}?w=248&fit=crop&auto=format`}
+                        srcSet={elem.sprites.other.dream_world.front_default}
+                        src={elem.sprites.other.dream_world.front_default}
                         alt={elem.name}
+                        style={{ objectFit: 'contain' }}
                         loading="lazy"
                     />
                     <ImageListItemBar
