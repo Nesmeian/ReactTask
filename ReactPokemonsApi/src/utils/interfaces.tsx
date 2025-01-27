@@ -10,6 +10,7 @@ export interface PokemonResponse {
 export interface PokemonDetails {
     id: number
     name: string
+    description: string
     sprites: {
         other: {
             dream_world: {
@@ -17,4 +18,13 @@ export interface PokemonDetails {
             }
         }
     }
+    species: Pokemon
+}
+export interface PokemonDescription {
+    flavor_text_entries: pokemonText
+}
+export interface pokemonText {
+    flavor_text: string
+    language: Pokemon
+    version: Pokemon
 }

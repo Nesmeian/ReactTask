@@ -3,7 +3,7 @@ import Header from './components/Header'
 import Main from './components/Main'
 import { useEffect, useState } from 'react'
 import { PokemonDetails } from './utils/interfaces'
-import { getPokemons } from './services/api'
+import { getDescription, getPokemons } from './services/api'
 const theme = createTheme({
     typography: {
         fontFamily: 'LozangeNoCommercial, Arial, sans-serif',
@@ -23,8 +23,10 @@ function App(): JSX.Element {
     useEffect(() => {
         const fetchAndSetPokemons = async (): Promise<void> => {
             try {
-                const allPockemons = await getPokemons(seacrh)
-                setPokemons(allPockemons)
+                const allPockemons = await getPokemons()
+                const pokemonsWithDescription =
+                    await getDescription(allPockemons)
+                setPokemons(pokemonsWithDescription)
             } catch (error) {
                 console.error('Ошибка при загрузке покемонов:', error)
             }

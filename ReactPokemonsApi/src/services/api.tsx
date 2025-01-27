@@ -1,4 +1,9 @@
-import { Pokemon, PokemonDetails, PokemonResponse } from '../utils/interfaces'
+import {
+    Pokemon,
+    PokemonDescription,
+    PokemonDetails,
+    PokemonResponse,
+} from '../utils/interfaces'
 
 export default async function fetchPokemons(
     seacrh?: string,
@@ -27,4 +32,24 @@ export const getPokemons = async (
     } else {
         return pokemons as PokemonDetails
     }
+}
+export const getDescription = async (
+    data: PokemonDetails,
+): Promise<PokemonDetails[] | PokemonDetails> => {
+    const pokemons: PokemonDetails[] = await getPokemons()
+    const allPokemons: PokemonDescription[] = await Promise.all(
+        pokemons.map(async (e: PokemonDetails) => {
+            const response = await fetch(e.species.url)
+            return response.json() as Promise<PokemonDetails>
+        }),
+    )
+    console.log(data)
+    allPokemons.forEach((e, i) => {
+        if (Array.isArray(data)) {
+            data[i].description = e['flavor_text_entries'][0]['flavor_text']
+        } else {
+            data.description = e['flavor_text_entries'][0]['flavor_text']
+        }
+    })
+    return data
 }

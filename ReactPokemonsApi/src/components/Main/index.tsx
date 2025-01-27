@@ -1,7 +1,5 @@
 import {
-    Button,
     Card,
-    CardActions,
     CardContent,
     CardMedia,
     IconButton,
@@ -21,10 +19,9 @@ const Main = ({
     const cols = checkWidth()
     const pokemonsArray = Array.isArray(pokemons) ? pokemons : [pokemons]
     console.log(pokemonsArray)
-
     return (
         <>
-            {Array.isArray(pokemonsArray) && pokemonsArray.length > 0 ? (
+            {Array.isArray(pokemonsArray) && pokemonsArray.length > 1 ? (
                 <ImageList cols={cols}>
                     {pokemonsArray.map((elem) => (
                         <ImageListItem key={elem.name}>
@@ -41,7 +38,7 @@ const Main = ({
                             />
                             <ImageListItemBar
                                 title={elem.name}
-                                subtitle={elem.name}
+                                subtitle={elem.description}
                                 actionIcon={
                                     <IconButton
                                         sx={{
@@ -55,41 +52,50 @@ const Main = ({
                     ))}
                 </ImageList>
             ) : (
-                <Card sx={{ maxWidth: 345 }}>
+                <Card
+                    sx={{
+                        height: '90vh',
+                        position: 'relative',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        boxShadow: 'none',
+                    }}
+                >
                     {pokemonsArray.length > 0 ? (
                         <>
                             <CardMedia
-                                sx={{ height: 140 }}
+                                sx={{
+                                    height: '60%',
+                                    width: '60%',
+                                    backgroundSize: 'contain',
+                                }}
                                 image={
                                     pokemonsArray[0].sprites.other.dream_world
                                         .front_default
                                 }
-                                title={pokemonsArray[0].name} // Используйте имя покемона
+                                title={pokemonsArray[0].name}
                             />
                             <CardContent>
                                 <Typography
                                     gutterBottom
                                     variant="h5"
                                     component="div"
+                                    sx={{ fontSize: '5rem' }}
                                 >
-                                    {pokemonsArray[0].name}{' '}
-                                    {/* Используйте имя покемона */}
+                                    {pokemonsArray[0].name}
                                 </Typography>
                                 <Typography
                                     variant="body2"
                                     sx={{ color: 'text.secondary' }}
                                 >
-                                    {/* Добавьте описание или другую информацию о покемоне */}
-                                    {`Details about ${pokemonsArray[0].name}`}
+                                    {`Details about ${pokemonsArray[0].description}`}
                                 </Typography>
                             </CardContent>
-                            <CardActions>
-                                <Button size="small">Share</Button>
-                                <Button size="small">Learn More</Button>
-                            </CardActions>
                         </>
                     ) : (
-                        <Typography variant="body2" sx={{ padding: 2 }}>
+                        <Typography variant="h1" sx={{ padding: 2 }}>
                             Something went wrong
                         </Typography>
                     )}
