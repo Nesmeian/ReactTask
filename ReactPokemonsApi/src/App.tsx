@@ -16,11 +16,14 @@ const theme = createTheme({
     },
 })
 function App(): JSX.Element {
-    const [pokemons, setPokemons] = useState<PokemonDetails[]>([])
+    const [pokemons, setPokemons] = useState<PokemonDetails[] | PokemonDetails>(
+        [],
+    )
+    const seacrh = 'charmander'
     useEffect(() => {
         const fetchAndSetPokemons = async (): Promise<void> => {
             try {
-                const allPockemons = await getPokemons()
+                const allPockemons = await getPokemons(seacrh)
                 setPokemons(allPockemons)
             } catch (error) {
                 console.error('Ошибка при загрузке покемонов:', error)
