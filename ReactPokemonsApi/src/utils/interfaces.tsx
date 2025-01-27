@@ -1,23 +1,20 @@
 export interface Pokemon {
-    name: string // Имя покемона
-    url: string // URL для получения дополнительной информации о покемоне
+    name: string
+    url: string
 }
 
-// Интерфейс для ответа от API с результатами
 export interface PokemonResponse {
-    results: Pokemon[] // Массив покемонов
+    results: Pokemon[]
 }
 
-// Интерфейс для информации о покемоне (например, после получения данных по URL)
 export interface PokemonDetails {
-    id: number // Уникальный идентификатор покемона
-    name: string // Имя покемона
+    id: number
+    name: string
     sprites: {
         other: {
             dream_world: {
-                front_default: string // URL изображения покемона
+                front_default: string
             }
         }
     }
-    // Добавьте другие свойства по мере необходимости
 }

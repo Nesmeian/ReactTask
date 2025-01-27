@@ -5,33 +5,14 @@ import {
     ImageListItemBar,
 } from '@mui/material'
 import checkWidth from '../utils/checkWidth'
-import fetchPokemons from '../../services/api'
-import { useEffect, useState } from 'react'
-import {
-    Pokemon,
-    PokemonDetails,
-    PokemonResponse,
-} from '../../utils/interfaces'
+import { PokemonDetails } from '../../utils/interfaces'
 
-const Main = (): JSX.Element => {
+const Main = ({ pokemons }: { pokemons: PokemonDetails[] }): JSX.Element => {
     const cols = checkWidth()
-    const [state, setState] = useState<PokemonDetails[]>([])
-    useEffect(() => {
-        const take = async (): Promise<void> => {
-            const pokemons: PokemonResponse = await fetchPokemons()
-            const allPockemons = await Promise.all(
-                pokemons.results.map(async (e: Pokemon) => {
-                    const response = await fetch(e.url)
-                    return response.json() as Promise<PokemonDetails>
-                }),
-            )
-            setState(allPockemons)
-        }
-        take()
-    }, [])
+
     return (
         <ImageList cols={cols}>
-            {state.map((elem) => (
+            {pokemons.map((elem) => (
                 <ImageListItem key={elem.name}>
                     <img
                         srcSet={elem.sprites.other.dream_world.front_default}
