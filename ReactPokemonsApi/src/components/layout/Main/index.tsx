@@ -8,21 +8,25 @@ const Main = ({
     error,
 }: {
     error: string | null
-    pokemons: PokemonDetails[] | PokemonDetails
+    pokemons: PokemonDetails[] | PokemonDetails | false
 }): JSX.Element => {
     const cols = checkWidth()
-    const pokemonsArray = Array.isArray(pokemons) ? pokemons : [pokemons]
+    const pokemonsArray = Array.isArray(pokemons)
+        ? pokemons
+        : pokemons === false
+          ? false
+          : [pokemons]
     if (error) {
         return <div>{error}</div>
     }
     return (
         <>
-            {pokemonsArray.length > 1 ? (
+            {Array.isArray(pokemonsArray) && pokemonsArray.length > 1 ? (
                 <ImageListElement cols={cols} pokemonsArray={pokemonsArray} />
+            ) : Array.isArray(pokemonsArray) && pokemonsArray.length === 1 ? (
+                <CardElement pokemonsArray={pokemonsArray} />
             ) : (
-                pokemonsArray.length === 1 && (
-                    <CardElement pokemonsArray={pokemonsArray} />
-                )
+                <div>FInaly </div>
             )}
         </>
     )

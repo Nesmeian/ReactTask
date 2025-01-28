@@ -13,7 +13,6 @@ export default function Search({
     const [searchText, setSearchText] = useState('')
     const detectKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
         if (e.key === 'Enter' && searchText !== '') {
-            console.log(1)
             setSearch(searchText)
         }
     }

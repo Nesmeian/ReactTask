@@ -3,7 +3,7 @@ import Header from './components/layout/Header'
 import Main from './components/layout/Main'
 import { useEffect, useState } from 'react'
 import { PokemonDetails } from './utils/interfaces'
-import { getDescription, getPokemons } from './services/api'
+import { getDescription } from './services/api'
 import CircularIndeterminate from './utils/CircularIndeterminate'
 const theme = createTheme({
     typography: {
@@ -17,9 +17,9 @@ const theme = createTheme({
     },
 })
 function App(): JSX.Element {
-    const [pokemons, setPokemons] = useState<PokemonDetails[] | PokemonDetails>(
-        [],
-    )
+    const [pokemons, setPokemons] = useState<
+        PokemonDetails[] | PokemonDetails | false
+    >([])
     const [search, setSearch] = useState('')
     const [error, setError] = useState<string | null>(null)
     const [loading, setLoading] = useState<boolean>(false)
@@ -27,23 +27,16 @@ function App(): JSX.Element {
         const fetchAndSetPokemons = async (): Promise<void> => {
             setLoading(true)
             try {
-                const allPokemons = await getPokemons(search)
-                const pokemonsWithDescription = await getDescription(
-                    allPokemons,
-                    search,
-                )
+                const pokemonsWithDescription = await getDescription(search)
                 setPokemons(pokemonsWithDescription)
             } catch {
-                setError('Something go wrong')
+                setError('Something went wrong')
             } finally {
                 setLoading(false)
             }
         }
-        if (search) {
-            fetchAndSetPokemons()
-        } else {
-            fetchAndSetPokemons()
-        }
+
+        fetchAndSetPokemons()
     }, [search])
     return (
         <ThemeProvider theme={theme}>
