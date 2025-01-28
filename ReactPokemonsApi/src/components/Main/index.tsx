@@ -10,6 +10,7 @@ import {
 } from '@mui/material'
 import checkWidth from '../utils/checkWidth'
 import { PokemonDetails } from '../../utils/interfaces'
+import CircularIndeterminate from '../../utils/CircularIndeterminate'
 
 const Main = ({
     pokemons,
@@ -95,9 +96,7 @@ const Main = ({
                             </CardContent>
                         </>
                     ) : (
-                        <Typography variant="h1" sx={{ padding: 2 }}>
-                            Something went wrong
-                        </Typography>
+                        <CircularIndeterminate />
                     )}
                 </Card>
             )}

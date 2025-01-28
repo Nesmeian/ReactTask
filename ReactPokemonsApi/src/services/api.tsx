@@ -19,7 +19,7 @@ export default async function fetchPokemons(
 }
 export const getPokemons = async (
     search?: string,
-): Promise<PokemonDetails[] | PokemonDetails> => {
+): Promise<PokemonDetails[]> => {
     const pokemons = await fetchPokemons(search)
     if ('results' in pokemons) {
         const allPokemons = await Promise.all(
@@ -30,25 +30,27 @@ export const getPokemons = async (
         )
         return allPokemons
     } else {
-        return pokemons as PokemonDetails
+        return [pokemons as PokemonDetails]
     }
 }
+
 export const getDescription = async (
-    data: PokemonDetails,
+    data: PokemonDetails[],
+    search: string,
 ): Promise<PokemonDetails[] | PokemonDetails> => {
-    const pokemons: PokemonDetails[] = await getPokemons()
+    const pokemons: PokemonDetails[] = await getPokemons(search)
     const allPokemons: PokemonDescription[] = await Promise.all(
         pokemons.map(async (e: PokemonDetails) => {
             const response = await fetch(e.species.url)
-            return response.json() as Promise<PokemonDetails>
+            return response.json() as Promise<PokemonDescription>
         }),
     )
-    console.log(data)
+    console.log(allPokemons)
     allPokemons.forEach((e, i) => {
-        if (Array.isArray(data)) {
+        if (Array.isArray(data) && data.length > 1) {
             data[i].description = e['flavor_text_entries'][0]['flavor_text']
         } else {
-            data.description = e['flavor_text_entries'][0]['flavor_text']
+            data[0].description = e['flavor_text_entries'][0]['flavor_text']
         }
     })
     return data

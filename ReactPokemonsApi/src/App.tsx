@@ -23,9 +23,11 @@ function App(): JSX.Element {
     useEffect(() => {
         const fetchAndSetPokemons = async (): Promise<void> => {
             try {
-                const allPockemons = await getPokemons()
-                const pokemonsWithDescription =
-                    await getDescription(allPockemons)
+                const allPockemons = await getPokemons(seacrh)
+                const pokemonsWithDescription = await getDescription(
+                    allPockemons,
+                    seacrh,
+                )
                 setPokemons(pokemonsWithDescription)
             } catch (error) {
                 console.error('Ошибка при загрузке покемонов:', error)

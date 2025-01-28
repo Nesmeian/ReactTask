@@ -20,9 +20,11 @@ export interface PokemonDetails {
     }
     species: Pokemon
 }
+
 export interface PokemonDescription {
-    flavor_text_entries: pokemonText
+    flavor_text_entries: pokemonText[]
 }
+
 export interface pokemonText {
     flavor_text: string
     language: Pokemon
