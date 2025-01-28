@@ -11,16 +11,12 @@ export default function Search({
     })
 
     const [searchText, setSearchText] = useState('')
-    // useEffect(() => {
-    //     document.addEventListener('keydown', detectKeyDown, true)
-    // }, [])
-    // const detectKeyDown = (e) => {
-    //     if (e.key === 'Enter') {
-    //         console.log(e.key)
-    //     } else {
-    //         console.log('wrong')
-    //     }
-    // }
+    const detectKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+        if (e.key === 'Enter' && searchText !== '') {
+            console.log(1)
+            setSearch(searchText)
+        }
+    }
     return (
         <Stack
             direction={'row'}
@@ -41,6 +37,7 @@ export default function Search({
                     autoComplete="off"
                     sx={{ fontFamily: 'Roboto' }}
                     onChange={(e) => setSearchText(e.target.value)}
+                    onKeyDown={detectKeyDown}
                 />
             </SearchContainer>
         </Stack>

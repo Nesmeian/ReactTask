@@ -4,7 +4,7 @@ import {
     ImageListItem,
     ImageListItemBar,
 } from '@mui/material'
-import { PokemonDetails } from '../../utils/interfaces'
+import { PokemonDetails } from '../../../utils/interfaces'
 export default function ImageListElement({
     pokemonsArray,
     cols,
