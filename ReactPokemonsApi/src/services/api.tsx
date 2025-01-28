@@ -36,7 +36,7 @@ export const getPokemons = async (
 
 export const getDescription = async (
     data: PokemonDetails[],
-    search: string,
+    search?: string,
 ): Promise<PokemonDetails[] | PokemonDetails> => {
     const pokemons: PokemonDetails[] = await getPokemons(search)
     const allPokemons: PokemonDescription[] = await Promise.all(
@@ -45,9 +45,8 @@ export const getDescription = async (
             return response.json() as Promise<PokemonDescription>
         }),
     )
-    console.log(allPokemons)
     allPokemons.forEach((e, i) => {
-        if (Array.isArray(data) && data.length > 1) {
+        if (search === undefined) {
             data[i].description = e['flavor_text_entries'][0]['flavor_text']
         } else {
             data[0].description = e['flavor_text_entries'][0]['flavor_text']

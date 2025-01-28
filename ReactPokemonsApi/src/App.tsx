@@ -19,7 +19,7 @@ function App(): JSX.Element {
     const [pokemons, setPokemons] = useState<PokemonDetails[] | PokemonDetails>(
         [],
     )
-    const seacrh = 'charmander'
+    const seacrh = 'pikachu'
     useEffect(() => {
         const fetchAndSetPokemons = async (): Promise<void> => {
             try {
