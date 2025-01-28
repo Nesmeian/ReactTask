@@ -2,7 +2,7 @@ import { Box, InputBase, Link, Stack, styled, Typography } from '@mui/material'
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon'
 import SearchIcon from '@mui/icons-material/Search'
 import TelegramIcon from '@mui/icons-material/Telegram'
-import CustomIcon from '../../utils/changeIcon'
+import CustomIcon from '../../../utils/changeIcon'
 import InstagramIcon from '@mui/icons-material/Instagram'
 const CustomInstagramIcon = CustomIcon(InstagramIcon)
 const CustomTelegramIcon = CustomIcon(TelegramIcon)

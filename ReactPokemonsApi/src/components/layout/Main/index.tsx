@@ -1,8 +1,8 @@
-import checkWidth from '../utils/checkWidth'
-import { PokemonDetails } from '../../utils/interfaces'
-import ImageListElement from '../ImageList'
-import CardElement from '../Card'
-import CircularIndeterminate from '../../utils/CircularIndeterminate'
+import checkWidth from '../../../utils/checkWidth'
+import { PokemonDetails } from '../../../utils/interfaces'
+import CardElement from '../../elements/Card'
+import CircularIndeterminate from '../../../utils/CircularIndeterminate'
+import ImageListElement from '../../elements/ImageList'
 
 const Main = ({
     pokemons,

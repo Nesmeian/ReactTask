@@ -1,5 +1,5 @@
 import { Card, CardContent, CardMedia, Typography } from '@mui/material'
-import { PokemonDetails } from '../../utils/interfaces'
+import { PokemonDetails } from '../../../utils/interfaces'
 
 export default function CardElement({
     pokemonsArray,

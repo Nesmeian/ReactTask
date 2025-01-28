@@ -1,6 +1,6 @@
 import { createTheme, colors, ThemeProvider, Box } from '@mui/material'
-import Header from './components/Header'
-import Main from './components/Main'
+import Header from './components/layout/Header'
+import Main from './components/layout/Main'
 import { useEffect, useState } from 'react'
 import { PokemonDetails } from './utils/interfaces'
 import { getDescription, getPokemons } from './services/api'
