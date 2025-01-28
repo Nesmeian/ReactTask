@@ -1,15 +1,17 @@
-import { Box, InputBase, Link, Stack, styled, Typography } from '@mui/material'
+import { Link, Stack, Typography } from '@mui/material'
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon'
-import SearchIcon from '@mui/icons-material/Search'
 import TelegramIcon from '@mui/icons-material/Telegram'
 import CustomIcon from '../../../utils/changeIcon'
 import InstagramIcon from '@mui/icons-material/Instagram'
+import Search from '../../elements/Search'
 const CustomInstagramIcon = CustomIcon(InstagramIcon)
 const CustomTelegramIcon = CustomIcon(TelegramIcon)
-const Search = styled(Box)({
-    fontFamily: 'Roboto',
-})
-const Header = (): JSX.Element => {
+
+const Header = ({
+    setSearch,
+}: {
+    setSearch: React.Dispatch<React.SetStateAction<string>>
+}): JSX.Element => {
     return (
         <>
             <Stack direction={'row'} justifyContent={'space-between'} p={2}>
@@ -32,22 +34,7 @@ const Header = (): JSX.Element => {
                 >
                     Pokemon Galery
                 </Typography>
-                <Stack
-                    direction={'row'}
-                    alignItems={'center'}
-                    sx={{
-                        borderBottom: '1px solid',
-                        borderColor: 'text.primary',
-                    }}
-                >
-                    <SearchIcon></SearchIcon>
-                    <Search>
-                        <InputBase
-                            placeholder="Search..."
-                            sx={{ fontFamily: 'Roboto' }}
-                        />
-                    </Search>
-                </Stack>
+                <Search setSearch={setSearch} />
                 <Stack gap={1} direction={'row'}>
                     <Link href="https://www.instagram.com/">
                         <CustomInstagramIcon></CustomInstagramIcon>

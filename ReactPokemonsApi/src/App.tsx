@@ -19,27 +19,30 @@ function App(): JSX.Element {
     const [pokemons, setPokemons] = useState<PokemonDetails[] | PokemonDetails>(
         [],
     )
-    const seacrh = 'pikachu'
+    const [search, setSearch] = useState('')
     useEffect(() => {
         const fetchAndSetPokemons = async (): Promise<void> => {
             try {
-                const allPockemons = await getPokemons(seacrh)
+                const allPokemons = await getPokemons(search)
                 const pokemonsWithDescription = await getDescription(
-                    allPockemons,
-                    seacrh,
+                    allPokemons,
+                    search,
                 )
                 setPokemons(pokemonsWithDescription)
-            } catch (error) {
-                console.error('Ошибка при загрузке покемонов:', error)
+            } catch {
+                fetchAndSetPokemons()
             }
         }
-
-        fetchAndSetPokemons()
-    }, [])
+        if (search) {
+            fetchAndSetPokemons()
+        } else {
+            fetchAndSetPokemons() // Очистка состояния покемонов, если поиск пустой
+        }
+    }, [search])
     return (
         <ThemeProvider theme={theme}>
             <Box bgcolor={'background.default'} color={'text.primary'}>
-                <Header />
+                <Header setSearch={setSearch} />
                 <Main pokemons={pokemons} />
             </Box>
         </ThemeProvider>
