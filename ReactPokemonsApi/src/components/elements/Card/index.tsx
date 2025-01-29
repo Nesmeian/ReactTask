@@ -1,9 +1,10 @@
-import { Box, Card, CardContent, CardMedia, Typography } from '@mui/material'
+import { Card, CardContent, CardMedia, Typography } from '@mui/material'
 import { PokemonDetails, StatsColorsTypes } from '../../../interfaces'
 import Stats from '../Stats'
 import statsColors from '../Stats/pokemonsStatsColors'
 import capitalizeFirst from '../../../utils/capitalizeFirst'
 import calculateStat from '../../../utils/calculateStat'
+import PokemonTypes from '../PokemonTypes'
 
 export default function CardElement({
     pokemonsArray,
@@ -53,32 +54,7 @@ export default function CardElement({
                 >
                     {name}
                 </Typography>
-                <Box
-                    sx={{
-                        display: 'flex',
-                        gap: '5px',
-                        justifyContent: 'center',
-                    }}
-                >
-                    {type.map((e) => {
-                        return (
-                            <Typography
-                                key={e}
-                                gutterBottom
-                                variant="h6"
-                                sx={{
-                                    color: 'white',
-                                    padding: '0px 10px',
-                                    borderRadius: '12px',
-                                    background: `${statsColors[e as keyof StatsColorsTypes]}`,
-                                    textAlign: 'center',
-                                }}
-                            >
-                                {capitalizeFirst(e)}
-                            </Typography>
-                        )
-                    })}
-                </Box>
+                <PokemonTypes type={type} />
                 <Stats color={statsColor} stats={stats} />
             </CardContent>
         </Card>
