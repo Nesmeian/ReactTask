@@ -4,6 +4,7 @@ import Stats from '../Stats'
 import statsColors from '../Stats/pokemonsStatsColors'
 import capitalizeFirst from '../../../utils/capitalizeFirst'
 import calculateStat from '../../../utils/calculateStat'
+import PokemonTypes from '../PokemonTypes'
 export default function ImageListElement({
     pokemonsArray,
     cols,
@@ -55,6 +56,7 @@ export default function ImageListElement({
                         >
                             {name}
                         </Typography>
+                        <PokemonTypes type={type} />
                         <Stats color={statsColor} stats={stats}></Stats>
                     </ImageListItem>
                 )
