@@ -30,6 +30,7 @@ const Header = ({
                             xs: 'none',
                             sm: 'block',
                         },
+                        fontFamily: 'LozangeNoCommercial',
                     }}
                 >
                     Pokemon Galery

@@ -3,7 +3,7 @@ import {
     PokemonDescription,
     PokemonDetails,
     PokemonResponse,
-} from '../utils/interfaces'
+} from '../interfaces'
 
 export default async function fetchPokemons(
     seacrh?: string,
@@ -25,7 +25,6 @@ export const getPokemons = async (
     search?: string,
 ): Promise<PokemonDetails[] | false> => {
     const pokemons = await fetchPokemons(search)
-
     if (pokemons === false) {
         return false
     }
@@ -53,7 +52,7 @@ export const getDescription = async (
     if (typeof pokemons === 'boolean') {
         return pokemons
     }
-
+    console.log(pokemons[0])
     const allPokemons: PokemonDescription[] = await Promise.all(
         pokemons.map(async (e: PokemonDetails) => {
             const response = await fetch(e.species.url)
@@ -67,6 +66,5 @@ export const getDescription = async (
             pokemons[0].description = e['flavor_text_entries'][0]['flavor_text']
         }
     })
-
     return pokemons
 }

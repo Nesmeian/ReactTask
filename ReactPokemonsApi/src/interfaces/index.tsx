@@ -18,9 +18,15 @@ export interface PokemonDetails {
             }
         }
     }
+    types: PokemonTypes[]
     species: Pokemon
 }
-
+interface PokemonTypes {
+    type: {
+        name: string
+        url: string
+    }
+}
 export interface PokemonDescription {
     flavor_text_entries: pokemonText[]
 }

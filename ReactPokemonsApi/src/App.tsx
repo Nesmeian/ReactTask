@@ -2,12 +2,12 @@ import { createTheme, colors, ThemeProvider, Box } from '@mui/material'
 import Header from './components/layout/Header'
 import Main from './components/layout/Main'
 import { useEffect, useState } from 'react'
-import { PokemonDetails } from './utils/interfaces'
+import { PokemonDetails } from './interfaces'
 import { getDescription } from './services/api'
 import CircularIndeterminate from './utils/CircularIndeterminate'
 const theme = createTheme({
     typography: {
-        fontFamily: 'LozangeNoCommercial, Arial, sans-serif',
+        fontFamily: 'Roboto, Arial, sans-serif',
     },
     palette: {
         secondary: {

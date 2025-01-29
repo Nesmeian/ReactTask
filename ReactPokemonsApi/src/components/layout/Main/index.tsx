@@ -1,5 +1,5 @@
 import checkWidth from '../../../utils/checkWidth'
-import { PokemonDetails } from '../../../utils/interfaces'
+import { PokemonDetails } from '../../../interfaces'
 import CardElement from '../../elements/Card'
 import ImageListElement from '../../elements/ImageList'
 

@@ -4,7 +4,7 @@ import {
     ImageListItem,
     ImageListItemBar,
 } from '@mui/material'
-import { PokemonDetails } from '../../../utils/interfaces'
+import { PokemonDetails } from '../../../interfaces'
 export default function ImageListElement({
     pokemonsArray,
     cols,
@@ -15,7 +15,10 @@ export default function ImageListElement({
     return (
         <ImageList cols={cols}>
             {pokemonsArray.map((elem) => (
-                <ImageListItem key={elem.name}>
+                <ImageListItem
+                    key={elem.name}
+                    onClick={() => console.log(elem.name)}
+                >
                     <img
                         srcSet={elem.sprites.other.dream_world.front_default}
                         src={elem.sprites.other.dream_world.front_default}
