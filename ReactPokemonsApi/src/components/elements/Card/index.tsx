@@ -1,6 +1,7 @@
 import { Card, CardContent, CardMedia, Typography } from '@mui/material'
 import { PokemonDetails } from '../../../interfaces'
 import Stats from '../Stats'
+import statsColors from '../Stats/pokemonsStatsColors'
 
 export default function CardElement({
     pokemonsArray,
@@ -10,6 +11,7 @@ export default function CardElement({
     const type = pokemonsArray[0].types.map((e) => {
         return e.type.name
     })
+    const statsColor = statsColors[type[0]]
     const name =
         pokemonsArray[0].name.charAt(0).toUpperCase() +
         pokemonsArray[0].name.slice(1)
@@ -51,7 +53,7 @@ export default function CardElement({
                 >
                     {type.map((e) => `${e[0].toUpperCase()}${e.slice(1)} `)}
                 </Typography>
-                <Stats />
+                <Stats color={statsColor} />
             </CardContent>
         </Card>
     )

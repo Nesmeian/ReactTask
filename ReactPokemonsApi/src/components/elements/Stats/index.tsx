@@ -1,19 +1,21 @@
 import { Box, Stack } from '@mui/material'
 
-export default function Stats(): JSX.Element {
+export default function Stats({ color }: { color: string }): JSX.Element {
     return (
         <Stack>
-            <ProgressBar name="Strength" stats={30}></ProgressBar>
-            <ProgressBar name="Speed" stats={70}></ProgressBar>
-            <ProgressBar name="Weight" stats={20}></ProgressBar>
-            <ProgressBar name="Skill" stats={60}></ProgressBar>
+            <ProgressBar name="Strength" color={color} stats={30}></ProgressBar>
+            <ProgressBar name="Speed" color={color} stats={70}></ProgressBar>
+            <ProgressBar name="Weight" color={color} stats={20}></ProgressBar>
+            <ProgressBar name="Skill" color={color} stats={60}></ProgressBar>
         </Stack>
     )
 }
 function ProgressBar({
     name,
     stats,
+    color,
 }: {
+    color: string
     name: string
     stats: number
 }): JSX.Element {
@@ -32,7 +34,7 @@ function ProgressBar({
             >
                 <Box
                     sx={{
-                        backgroundColor: 'yellow',
+                        backgroundColor: `${color}`,
                         width: `${stats}%`,
                         borderRadius: '12px',
                         height: '85%',
