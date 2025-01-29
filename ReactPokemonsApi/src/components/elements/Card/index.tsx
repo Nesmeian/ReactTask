@@ -1,7 +1,8 @@
-import { Card, CardContent, CardMedia, Typography } from '@mui/material'
-import { PokemonDetails } from '../../../interfaces'
+import { Box, Card, CardContent, CardMedia, Typography } from '@mui/material'
+import { PokemonDetails, StatsColorsTypes } from '../../../interfaces'
 import Stats from '../Stats'
 import statsColors from '../Stats/pokemonsStatsColors'
+import capitalizeFirst from '../../../utils/capitalizeFirst'
 
 export default function CardElement({
     pokemonsArray,
@@ -11,14 +12,19 @@ export default function CardElement({
     const type = pokemonsArray[0].types.map((e) => {
         return e.type.name
     })
-    const statsColor = statsColors[type[0]]
-    const name =
-        pokemonsArray[0].name.charAt(0).toUpperCase() +
-        pokemonsArray[0].name.slice(1)
+    const statsColor = statsColors[type[0] as keyof StatsColorsTypes]
+    const name = capitalizeFirst(pokemonsArray[0].name)
+    const stats: [string, number][] = pokemonsArray[0].stats
+        .filter(
+            (e) =>
+                e.stat.name !== 'special-attack' &&
+                e.stat.name !== 'special-defense',
+        )
+        .map((e) => [e.stat.name, e.base_stat])
     return (
         <Card
             sx={{
-                height: '85vh',
+                height: '65vh',
                 position: 'relative',
                 display: 'flex',
                 flexDirection: 'column',
@@ -46,14 +52,33 @@ export default function CardElement({
                 >
                     {name}
                 </Typography>
-                <Typography
-                    gutterBottom
-                    variant="h5"
-                    sx={{ textAlign: 'center' }}
+                <Box
+                    sx={{
+                        display: 'flex',
+                        gap: '5px',
+                        justifyContent: 'center',
+                    }}
                 >
-                    {type.map((e) => `${e[0].toUpperCase()}${e.slice(1)} `)}
-                </Typography>
-                <Stats color={statsColor} />
+                    {type.map((e) => {
+                        return (
+                            <Typography
+                                key={e}
+                                gutterBottom
+                                variant="h6"
+                                sx={{
+                                    color: 'white',
+                                    padding: '0px 10px',
+                                    borderRadius: '12px',
+                                    background: `${statsColors[e as keyof StatsColorsTypes]}`,
+                                    textAlign: 'center',
+                                }}
+                            >
+                                {capitalizeFirst(e)}
+                            </Typography>
+                        )
+                    })}
+                </Box>
+                <Stats color={statsColor} stats={stats} />
             </CardContent>
         </Card>
     )

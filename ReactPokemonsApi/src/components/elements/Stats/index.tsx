@@ -1,12 +1,22 @@
 import { Box, Stack } from '@mui/material'
-
-export default function Stats({ color }: { color: string }): JSX.Element {
+import { v4 as uuidv4 } from 'uuid'
+export default function Stats({
+    color,
+    stats,
+}: {
+    color: string
+    stats: [string, number][]
+}): JSX.Element {
     return (
         <Stack>
-            <ProgressBar name="Strength" color={color} stats={30}></ProgressBar>
-            <ProgressBar name="Speed" color={color} stats={70}></ProgressBar>
-            <ProgressBar name="Weight" color={color} stats={20}></ProgressBar>
-            <ProgressBar name="Skill" color={color} stats={60}></ProgressBar>
+            {stats.map((e) => (
+                <ProgressBar
+                    key={uuidv4()}
+                    color={color}
+                    name={e[0]}
+                    stats={e[1]}
+                />
+            ))}
         </Stack>
     )
 }

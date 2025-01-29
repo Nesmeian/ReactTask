@@ -1,4 +1,6 @@
-const statsColors = {
+import { StatsColorsTypes } from '../../../interfaces'
+
+const statsColors: StatsColorsTypes = {
     fire: '#fd7d24',
     fairy: '#fdb9e9',
     poison: '#b97fc9',
@@ -16,5 +18,6 @@ const statsColors = {
     ice: '#51c4e7',
     dragon: '#53a4cf',
     dark: '#707070',
+    normal: '#212121',
 }
 export default statsColors
