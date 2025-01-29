@@ -3,6 +3,7 @@ import { PokemonDetails, StatsColorsTypes } from '../../../interfaces'
 import Stats from '../Stats'
 import statsColors from '../Stats/pokemonsStatsColors'
 import capitalizeFirst from '../../../utils/capitalizeFirst'
+import calculateStat from '../../../utils/calculateStat'
 
 export default function CardElement({
     pokemonsArray,
@@ -20,7 +21,7 @@ export default function CardElement({
                 e.stat.name !== 'special-attack' &&
                 e.stat.name !== 'special-defense',
         )
-        .map((e) => [e.stat.name, e.base_stat])
+        .map((e) => [e.stat.name, calculateStat(e.base_stat)])
     return (
         <Card
             sx={{
