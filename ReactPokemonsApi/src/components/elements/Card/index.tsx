@@ -29,6 +29,7 @@ export default function CardElement({
                 height: '65vh',
                 position: 'relative',
                 display: 'flex',
+                maxWidth: '500px',
                 flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -40,7 +41,7 @@ export default function CardElement({
             <CardMedia
                 sx={{
                     height: '60%',
-                    width: '60%',
+                    width: '100%',
                     backgroundSize: 'contain',
                 }}
                 image={pokemonsArray[0].sprites.other.dream_world.front_default}

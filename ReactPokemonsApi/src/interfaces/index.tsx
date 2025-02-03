@@ -6,7 +6,10 @@ export interface Pokemon {
 export interface PokemonResponse {
     results: Pokemon[]
 }
-
+export interface ActionType {
+    type: 'CHANGE_SEACRH'
+    payload: 'string'
+}
 export interface PokemonDetails {
     id: number
     name: string

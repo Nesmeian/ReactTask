@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { PokemonDetails } from './interfaces'
 import { getDescription } from './services/api'
 import CircularIndeterminate from './utils/CircularIndeterminate'
+import { useDispatch, useSelector } from 'react-redux'
 const theme = createTheme({
     typography: {
         fontFamily: 'Roboto, Arial, sans-serif',
@@ -16,7 +17,9 @@ const theme = createTheme({
         mode: 'light',
     },
 })
+
 function App(): JSX.Element {
+    const tasks = useSelector((state) => state.search)
     const [pokemons, setPokemons] = useState<
         PokemonDetails[] | PokemonDetails | false
     >([])
@@ -35,7 +38,6 @@ function App(): JSX.Element {
                 setLoading(false)
             }
         }
-
         fetchAndSetPokemons()
     }, [search])
     return (

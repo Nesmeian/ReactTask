@@ -6,12 +6,12 @@ import {
 } from '../interfaces'
 
 export default async function fetchPokemons(
-    seacrh?: string,
+    search?: string,
 ): Promise<PokemonResponse | false> {
     try {
         const response =
-            seacrh !== undefined
-                ? await fetch(`https://pokeapi.co/api/v2/pokemon/${seacrh}`)
+            search !== undefined
+                ? await fetch(`https://pokeapi.co/api/v2/pokemon/${search}`)
                 : await fetch(`https://pokeapi.co/api/v2/pokemon/`)
         if (!response.ok) {
             throw new Error('Network response was not ok')
@@ -52,7 +52,6 @@ export const getDescription = async (
     if (typeof pokemons === 'boolean') {
         return pokemons
     }
-    console.log(pokemons[0])
     const allPokemons: PokemonDescription[] = await Promise.all(
         pokemons.map(async (e: PokemonDetails) => {
             const response = await fetch(e.species.url)
