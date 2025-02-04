@@ -26,6 +26,7 @@ export default function CardElement({
     return (
         <Card
             sx={{
+                margin: '10% auto 0',
                 height: '65vh',
                 position: 'relative',
                 display: 'flex',
@@ -35,7 +36,6 @@ export default function CardElement({
                 alignItems: 'center',
                 boxShadow: '0px 4px 4px 0px rgba(00,00,00,0.25)',
                 borderRadius: '10%',
-                margin: '5%',
             }}
         >
             <CardMedia

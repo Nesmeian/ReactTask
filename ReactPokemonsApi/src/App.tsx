@@ -1,4 +1,4 @@
-import { createTheme, colors, ThemeProvider, Box } from '@mui/material'
+import { ThemeProvider, Box } from '@mui/material'
 import Header from './components/layout/Header'
 import Main from './components/layout/Main'
 import { useEffect, useState } from 'react'
@@ -6,27 +6,20 @@ import { StateTypes } from './interfaces'
 import { getDescription } from './services/api'
 import CircularIndeterminate from './utils/CircularIndeterminate'
 import { useSelector, useDispatch } from 'react-redux'
-
-const theme = createTheme({
-    typography: {
-        fontFamily: 'Roboto, Arial, sans-serif',
-    },
-    palette: {
-        secondary: {
-            main: colors.orange[500],
-        },
-        mode: 'light',
-    },
-})
+import getTheme from './components/theme'
 
 function App(): JSX.Element {
     const dispatch = useDispatch()
-    const { search, pokemons } = useSelector((state: StateTypes) => {
-        return { search: state.search, pokemons: state.pokemons }
+    const { search, pokemons, themeMode } = useSelector((state: StateTypes) => {
+        return {
+            search: state.search,
+            pokemons: state.pokemons,
+            themeMode: state.themeMode,
+        }
     })
     const [error, setError] = useState<string | null>(null)
     const [loading, setLoading] = useState<boolean>(false)
-
+    const theme = getTheme(themeMode)
     useEffect(() => {
         const fetchData = async (): Promise<void> => {
             setLoading(true)

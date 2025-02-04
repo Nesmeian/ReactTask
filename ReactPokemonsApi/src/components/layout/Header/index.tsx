@@ -4,6 +4,7 @@ import TelegramIcon from '@mui/icons-material/Telegram'
 import CustomIcon from '../../../utils/changeIcon'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import Search from '../../elements/Search'
+import ChangeThemeIcon from '../../elements/changeThemeIcon'
 
 const CustomInstagramIcon = CustomIcon(InstagramIcon)
 const CustomTelegramIcon = CustomIcon(TelegramIcon)
@@ -34,6 +35,7 @@ const Header = (): JSX.Element => {
                 </Typography>
                 <Search />
                 <Stack gap={1} direction={'row'}>
+                    <ChangeThemeIcon />
                     <Link href="https://www.instagram.com/">
                         <CustomInstagramIcon></CustomInstagramIcon>
                     </Link>

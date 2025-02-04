@@ -1,8 +1,9 @@
 import { ActionType, StateTypes } from '../../interfaces'
-import { SEARCH_POKEMON, SET_POKEMON } from '../taskActionTypes'
+import { CHANGE_THEME, SEARCH_POKEMON, SET_POKEMON } from '../taskActionTypes'
 
 const initialState: StateTypes = {
     search: '',
+    themeMode: 'light',
     pokemons: [],
 }
 const taskReducer = (state = initialState, action: ActionType): StateTypes => {
@@ -16,6 +17,11 @@ const taskReducer = (state = initialState, action: ActionType): StateTypes => {
             return {
                 ...state,
                 pokemons: action.payload,
+            }
+        case CHANGE_THEME:
+            return {
+                ...state,
+                themeMode: action.payload,
             }
         default:
             return state

@@ -1,2 +1,3 @@
 export const SEARCH_POKEMON = 'SEARCH_POKEMON'
 export const SET_POKEMON = 'SET_POKEMON'
+export const CHANGE_THEME = 'CHANGE_THEME'

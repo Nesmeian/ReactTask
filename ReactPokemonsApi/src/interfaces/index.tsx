@@ -1,4 +1,8 @@
-import { SEARCH_POKEMON, SET_POKEMON } from '../store/taskActionTypes'
+import {
+    CHANGE_THEME,
+    SEARCH_POKEMON,
+    SET_POKEMON,
+} from '../store/taskActionTypes'
 
 export interface Pokemon {
     name: string
@@ -18,7 +22,10 @@ interface SetPokemonAction {
     payload: PokemonDetails[]
 }
 
-export type ActionType = SearchPokemonAction | SetPokemonAction
+export type ActionType =
+    | SearchPokemonAction
+    | SetPokemonAction
+    | ThemeTypesAction
 export interface PokemonDetails {
     id: number
     name: string
@@ -34,8 +41,14 @@ export interface PokemonDetails {
     species: Pokemon
     stats: StatsTypes[]
 }
+interface ThemeTypesAction {
+    type: typeof CHANGE_THEME
+    payload: ThemeTypes
+}
+export type ThemeTypes = 'dark' | 'light'
 export interface StateTypes {
     search: string
+    themeMode: ThemeTypes
     pokemons: PokemonDetails[]
 }
 interface StatsTypes {

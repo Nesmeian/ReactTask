@@ -31,7 +31,6 @@ export default function ImageListElement({
                 return (
                     <ImageListItem
                         key={elem.name}
-                        onClick={() => console.log(elem.name)}
                         sx={{
                             maxWidth: '300px',
                             boxShadow: '0px 4px 4px 0px rgba(00,00,00,0.25)',
