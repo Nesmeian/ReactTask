@@ -4,14 +4,11 @@ import TelegramIcon from '@mui/icons-material/Telegram'
 import CustomIcon from '../../../utils/changeIcon'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import Search from '../../elements/Search'
+
 const CustomInstagramIcon = CustomIcon(InstagramIcon)
 const CustomTelegramIcon = CustomIcon(TelegramIcon)
 
-const Header = ({
-    setSearch,
-}: {
-    setSearch: React.Dispatch<React.SetStateAction<string>>
-}): JSX.Element => {
+const Header = (): JSX.Element => {
     return (
         <>
             <Stack direction={'row'} justifyContent={'space-between'} p={2}>
@@ -35,7 +32,7 @@ const Header = ({
                 >
                     Pokemon Galery
                 </Typography>
-                <Search setSearch={setSearch} />
+                <Search />
                 <Stack gap={1} direction={'row'}>
                     <Link href="https://www.instagram.com/">
                         <CustomInstagramIcon></CustomInstagramIcon>

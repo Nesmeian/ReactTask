@@ -7,8 +7,8 @@ export interface PokemonResponse {
     results: Pokemon[]
 }
 export interface ActionType {
-    type: 'CHANGE_SEACRH'
-    payload: 'string'
+    type: 'SEARCH_POKEMON'
+    payload: string
 }
 export interface PokemonDetails {
     id: number
@@ -24,6 +24,10 @@ export interface PokemonDetails {
     types: PokemonTypes[]
     species: Pokemon
     stats: StatsTypes[]
+}
+export interface StateTypes {
+    search: string
+    pokemons: Pokemon[]
 }
 interface StatsTypes {
     base_stat: number

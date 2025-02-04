@@ -1,10 +1,11 @@
-import { ActionType } from '../../interfaces'
+import { ActionType, StateTypes } from '../../interfaces'
 import { SEARCH_POKEMON } from '../taskActionTypes'
-const initialState = {
+
+const initialState: StateTypes = {
     search: '',
     pokemons: [],
 }
-const taskReducer = (state = initialState, action: ActionType) => {
+const taskReducer = (state = initialState, action: ActionType): StateTypes => {
     switch (action.type) {
         case SEARCH_POKEMON:
             return {

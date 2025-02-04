@@ -2,10 +2,10 @@ import { createTheme, colors, ThemeProvider, Box } from '@mui/material'
 import Header from './components/layout/Header'
 import Main from './components/layout/Main'
 import { useEffect, useState } from 'react'
-import { PokemonDetails } from './interfaces'
+import { PokemonDetails, StateTypes } from './interfaces'
 import { getDescription } from './services/api'
 import CircularIndeterminate from './utils/CircularIndeterminate'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 const theme = createTheme({
     typography: {
         fontFamily: 'Roboto, Arial, sans-serif',
@@ -19,11 +19,11 @@ const theme = createTheme({
 })
 
 function App(): JSX.Element {
-    const tasks = useSelector((state) => state.search)
+    const search = useSelector((state: StateTypes) => state.search)
     const [pokemons, setPokemons] = useState<
         PokemonDetails[] | PokemonDetails | false
     >([])
-    const [search, setSearch] = useState('')
+    // const [search, setSearch] = useState('')
     const [error, setError] = useState<string | null>(null)
     const [loading, setLoading] = useState<boolean>(false)
     useEffect(() => {
@@ -43,7 +43,7 @@ function App(): JSX.Element {
     return (
         <ThemeProvider theme={theme}>
             <Box bgcolor={'background.default'} color={'text.primary'}>
-                <Header setSearch={setSearch} />
+                <Header />
                 {loading ? (
                     <CircularIndeterminate />
                 ) : (

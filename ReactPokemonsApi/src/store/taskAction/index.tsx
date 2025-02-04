@@ -1,24 +1,9 @@
-import {
-    ADD_TASK,
-    UPDATE_TASK_DESCRIPTION,
-    UPDATE_TASK_TITLE,
-} from '../taskActionTypes'
-export const addTask = (task) => {
-    return {
-        type: ADD_TASK,
-        payload: task,
-    }
-}
+import { ActionType } from '../../interfaces'
+import { SEARCH_POKEMON } from '../taskActionTypes'
 
-export const updateTaskTitle = (value) => {
+export const searchPokemon = (task: string): ActionType => {
     return {
-        type: UPDATE_TASK_TITLE,
-        payload: value,
-    }
-}
-export const updateTaskDecription = (value) => {
-    return {
-        type: UPDATE_TASK_DESCRIPTION,
-        paylod: value,
+        type: SEARCH_POKEMON,
+        payload: task,
     }
 }

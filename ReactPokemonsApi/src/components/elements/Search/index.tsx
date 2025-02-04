@@ -1,12 +1,13 @@
 import { Box, InputBase, Button, Stack } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import { useState } from 'react'
-export default function Search({
-    setSearch,
-}: {
-    setSearch: React.Dispatch<React.SetStateAction<string>>
-}): JSX.Element {
+import { useDispatch } from 'react-redux'
+export default function Search(): JSX.Element {
     const [searchText, setSearchText] = useState('')
+    const dispatch = useDispatch()
+    const setSearch = (text: string): void => {
+        dispatch({ type: 'SEARCH_POKEMON', payload: text })
+    }
     const detectKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
         if (e.key === 'Enter') {
             setSearch(searchText)
