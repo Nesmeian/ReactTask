@@ -8,7 +8,7 @@ const Main = ({
     error,
 }: {
     error: string | null
-    pokemons: PokemonDetails[] | PokemonDetails | false
+    pokemons: PokemonDetails[]
 }): JSX.Element => {
     const cols = checkWidth()
     const pokemonsArray = Array.isArray(pokemons)

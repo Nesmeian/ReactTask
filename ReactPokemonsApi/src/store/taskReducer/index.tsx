@@ -1,5 +1,5 @@
 import { ActionType, StateTypes } from '../../interfaces'
-import { SEARCH_POKEMON } from '../taskActionTypes'
+import { SEARCH_POKEMON, SET_POKEMON } from '../taskActionTypes'
 
 const initialState: StateTypes = {
     search: '',
@@ -11,6 +11,11 @@ const taskReducer = (state = initialState, action: ActionType): StateTypes => {
             return {
                 ...state,
                 search: action.payload,
+            }
+        case SET_POKEMON:
+            return {
+                ...state,
+                pokemons: action.payload,
             }
         default:
             return state

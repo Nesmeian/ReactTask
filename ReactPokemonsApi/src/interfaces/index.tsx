@@ -1,3 +1,5 @@
+import { SEARCH_POKEMON, SET_POKEMON } from '../store/taskActionTypes'
+
 export interface Pokemon {
     name: string
     url: string
@@ -6,10 +8,17 @@ export interface Pokemon {
 export interface PokemonResponse {
     results: Pokemon[]
 }
-export interface ActionType {
-    type: 'SEARCH_POKEMON'
+interface SearchPokemonAction {
+    type: typeof SEARCH_POKEMON
     payload: string
 }
+
+interface SetPokemonAction {
+    type: typeof SET_POKEMON
+    payload: PokemonDetails[]
+}
+
+export type ActionType = SearchPokemonAction | SetPokemonAction
 export interface PokemonDetails {
     id: number
     name: string
@@ -27,7 +36,7 @@ export interface PokemonDetails {
 }
 export interface StateTypes {
     search: string
-    pokemons: Pokemon[]
+    pokemons: PokemonDetails[]
 }
 interface StatsTypes {
     base_stat: number

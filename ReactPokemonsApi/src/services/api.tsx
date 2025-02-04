@@ -1,18 +1,21 @@
+import { Dispatch } from 'redux'
 import {
     Pokemon,
     PokemonDescription,
     PokemonDetails,
     PokemonResponse,
+    pokemonText,
 } from '../interfaces'
 
 export default async function fetchPokemons(
     search?: string,
 ): Promise<PokemonResponse | false> {
     try {
-        const response =
-            search !== undefined
-                ? await fetch(`https://pokeapi.co/api/v2/pokemon/${search}`)
-                : await fetch(`https://pokeapi.co/api/v2/pokemon/`)
+        const url = search
+            ? `https://pokeapi.co/api/v2/pokemon/${search}`
+            : `https://pokeapi.co/api/v2/pokemon/`
+        const response = await fetch(url)
+
         if (!response.ok) {
             throw new Error('Network response was not ok')
         }
@@ -21,49 +24,51 @@ export default async function fetchPokemons(
         return false
     }
 }
+
 export const getPokemons = async (
     search?: string,
 ): Promise<PokemonDetails[] | false> => {
     const pokemons = await fetchPokemons(search)
-    if (pokemons === false) {
+    if (!pokemons) {
         return false
     }
 
-    if (pokemons instanceof Object) {
-        if ('results' in pokemons) {
-            const allPokemons = await Promise.all(
-                pokemons.results.map(async (e: Pokemon) => {
-                    const response = await fetch(e.url)
-                    return response.json() as Promise<PokemonDetails>
-                }),
-            )
-            return allPokemons
-        } else {
-            return [pokemons as PokemonDetails]
-        }
+    if ('results' in pokemons) {
+        const allPokemons = await Promise.all(
+            pokemons.results.map(async (e: Pokemon) => {
+                const response = await fetch(e.url)
+                return response.json() as Promise<PokemonDetails>
+            }),
+        )
+        return allPokemons
+    } else {
+        return [pokemons as PokemonDetails]
     }
-    return false
 }
 
 export const getDescription = async (
+    dispatch: Dispatch,
     search?: string,
-): Promise<PokemonDetails[] | PokemonDetails | false> => {
+): Promise<void> => {
     const pokemons = await getPokemons(search)
-    if (typeof pokemons === 'boolean') {
-        return pokemons
+    if (!pokemons) {
+        dispatch({ type: 'SET_POKEMON', payload: [] })
+        return
     }
+
     const allPokemons: PokemonDescription[] = await Promise.all(
         pokemons.map(async (e: PokemonDetails) => {
             const response = await fetch(e.species.url)
             return response.json() as Promise<PokemonDescription>
         }),
     )
+
+    const getFlavorText = (entries: pokemonText[]): string =>
+        entries.length > 0 ? entries[0].flavor_text : 'No description available'
+
     allPokemons.forEach((e, i) => {
-        if (search === undefined) {
-            pokemons[i].description = e['flavor_text_entries'][0]['flavor_text']
-        } else {
-            pokemons[0].description = e['flavor_text_entries'][0]['flavor_text']
-        }
+        pokemons[i].description = getFlavorText(e.flavor_text_entries ?? [])
     })
-    return pokemons
+
+    dispatch({ type: 'SET_POKEMON', payload: pokemons }) // Отправляем в Redux
 }
